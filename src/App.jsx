@@ -1,18 +1,28 @@
-function Button({ text, color, fontSize }) {
-  const buttonStyle = {
-    color: color,
-    fontSize: fontSize + "px"
-  };
+function List(props) {
+  if (!props.animals) {
+    return <div>Loading...</div>;
+  }
 
-  return <button style={buttonStyle}>{text}</button>;
+  if (props.animals.length === 0) {
+    return <div>There are no animals in the list!</div>;
+  }
+
+  return (
+    <ul>
+      {props.animals.map((animal) => {
+        return <li key={animal}>{animal}</li>;
+      })}
+    </ul>
+  );
 }
 
 export default function App() {
+  const animals = ["Lion", "Cow", "Snake", "Lizard"];
+
   return (
     <div>
-      <Button text="Click Me!" color="blue" fontSize={12} />
-      <Button text="Don't Click Me!" color="red" fontSize={12} />
-      <Button text="Click Me!" color="blue" fontSize={20} />
+      <h1>Animals: </h1>
+      <List animals={animals} />
     </div>
   );
 }

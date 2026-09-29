@@ -7,6 +7,6 @@ import {SureDialog} from './Greeting.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <SureDialog/>
+    <App/>
   </StrictMode>,
 )
