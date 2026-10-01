@@ -1,28 +1,33 @@
-function List(props) {
-  if (!props.animals) {
-    return <div>Loading...</div>;
+import { useState } from 'react';
+import { sculptureList } from './data.jsx';
+
+export default function Gallery() {
+  const [index, setIndex] = useState(0);
+
+  function handleClick() {
+    setIndex(index + 1);
   }
 
-  if (props.animals.length === 0) {
-    return <div>There are no animals in the list!</div>;
-  }
-
+  let sculpture = sculptureList[index];
   return (
-    <ul>
-      {props.animals.map((animal) => {
-        return <li key={animal}>{animal}</li>;
-      })}
-    </ul>
-  );
-}
-
-export default function App() {
-  const animals = ["Lion", "Cow", "Snake", "Lizard"];
-
-  return (
-    <div>
-      <h1>Animals: </h1>
-      <List animals={animals} />
-    </div>
+    <>
+      <button onClick={handleClick}>
+        Next
+      </button>
+      <h2>
+        <i>{sculpture.name} </i>
+        by {sculpture.artist}
+      </h2>
+      <h3>
+        ({index + 1} of {sculptureList.length})
+      </h3>
+      <img
+        src={sculpture.url}
+        alt={sculpture.alt}
+      />
+      <p>
+        {sculpture.description}
+      </p>
+    </>
   );
 }
